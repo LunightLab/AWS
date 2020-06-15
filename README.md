@@ -8,7 +8,7 @@
 
 <p align="center">
   <a href="https://github.com/project/link">
-    <img src="images/readme-title.png" alt="title" width="290" height="290">
+    <img src="images/aws-cert-list.png" alt="title" width="850" height="350">
   </a>
 
   <h3 align="center">AWS 자료</h3>
