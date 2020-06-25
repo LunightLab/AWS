@@ -1,3 +1,12 @@
+<div align=right>
+    <a href="https://github.com/LunightLab">
+        <img alt="author" src= "https://img.shields.io/badge/author-lunight-blue?style=glat-square" target="_blank"></a>
+    </a>
+    <a href="https://github.com/LunightLab/LuLabTemplate">
+        <img alt="template version" src= "https://img.shields.io/badge/template%20version-1.0-blue?style=glat-square" target="_blank"></a>
+    </a>
+</div>
+
 AWS Certification Cloud Practitioner
 ====================================
 
@@ -37,3 +46,8 @@ AWS Certification Cloud Practitioner
 	4.2 AWS 결제 및 요금과 관련된 여러 가지 계정 구조 인식  
 	4.3 결제 지원에 이용할 수 있는 리소스 파악  
 5.	Note  
+
+<div align="center">
+<sub><sup>Written by <a href="https://github.com/LunightLab">@Lunight</a></sup></sub><small></small>
+
+</div>
