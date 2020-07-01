@@ -12,6 +12,14 @@ AWS-Cloud Practitioner Essentials(Second-Edition)
 
 **<div align=right>AWS의 핵심서비스</div>**
 
+### EC2(Elastic Cloud Compute)
+
+-	Compute : 표시되고 있는 컴퓨팅 또는 서버 리소스를 나타내며 서버를 활용하여 여러 활동을 할 수 있다.  
+-	Cloud : 클라우드에서 호스팅 되는 컴퓨팅 리소스  
+-	### EBS(Elastic Block Storage)
+
+### S3
+
 <!--
 ### AWS 클라우드
 
