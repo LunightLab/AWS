@@ -39,7 +39,7 @@ AWS-Cloud Practitioner Essentials(Second-Edition)
 
 ### AWS Global Infrastructure
 
--	AWSㅇㅢ 글로벌 인프라를 Resion, AZ, Edge location으로 나뉜다.  
+-	AWS의 글로벌 인프라를 Resion, AZ, Edge location으로 나뉜다.  
 
 #### 리전
 
