@@ -12,77 +12,96 @@ AWS-Cloud Practitioner Essentials(Second-Edition)
 
 **<div align=right>AWS의 통합형 서비스</div>**
 
-<!--
-### Amazon EC2(Elastic Cloud Compute)
+### Application Load Balancer
 
--   **Compute** : 표시되고 있는 컴퓨팅 또는 **서버 리소스를 나타내며 서버를 활용하여 여러 활동을 할 수 있다.**  
--   **Cloud** : 클라우드에서 호스팅 되는 컴퓨팅 리소스  
--   **Elastic(탄력적)** : 애플리케이션의 현 요구사항에 따라 해당 **애플리케이션에 필요한 리소스를 자동으로 늘리거나 줄일 수 있음**  
--   서버라는 이름 대신 **Amazon EC2 인스턴스라는 용어를 사용**  
--   인스턴스는 사용량에 따라 요금을 지불(인스턴스를 실행하는 시간을 측정)  
--   광범위한 하드웨어와 소프트웨어가 제공되고 인스턴스를 호스트 할 위치를 선택할 수 있다.  
+<p align="center"><img src="./img/ALB-lb1.png" width="600" height="300"></p>  
 
-### Amazon EBS(Elastic Block Storage)
+**ALB**  
+- ALB(Application Load Balancer)는 Elastic Load Balancing 서비스의 일부로 도입된 두번째 유형으 로드밸런서이다.  
+- Classic Load Balancer가 제공하는 대부분의 기능을 제공하고 추가로 중요한 기능과 개선사항이 추가되었다.
 
--   EBS 볼륨은 Amazon EC2 인스턴스의 스토리지 단위로 사용할 수 있다.  
--   AWS에서 실행 중인 인스턴스의 디스크 공간이 필요할 때마다 EBS 볼륨을 기억  
--   볼륨은 HDD 또는 SSD가 될 수 있다.  
--   사용한 만큼 지불할 수 있고, 볼륨이 더이상 필요하지 않을 때마다 이를 삭제하여 요금을 지불하지 않을 수 있다.  
--   EBS 볼륨은 **안정성과 가용성을 목표로 설계됨.** 볼륨에 있는 데이터는 자동으로 가용 영역(AZ)에서 실행중인 여러 서버에 복제된다.  
+<p align="center"><img src="./img/ALB-lb2.png" width="600" height="300"></p>   
 
-### Amazon S3(Simple Storage Service)
+**향상된 기능**  
+- 지원하는 프로토콜 : HTTP, HTTPS, HTTP/2, WebSockets  
+- CloudWatch 지표 : 추가적인 로드밸런싱 지표 및 대상 그룹 지표 차원  
+- Access Log : WebSocket 연결의 세부정보를 볼 수 있는 기능  
+- Status check : 더욱 세분화된 수준에서 대상 및 애플리케이션 상태에 대한 통찰력
 
--   **Amazon S3는 데이터를 저장하고 검색할 수 있는 간단한 API를 제공하는 완전 관리형 스토리지 서비스**  
--   Amazon S3 객체는 원하는 만큼 추가할 수 있다.  
--   객체는 이미지, 동영상 또는 서버 로그와 같은 거의 모든 데이터 파일이 될 수 있으며, 최대 몇 테라바이트 크기의 객체를 지원하므로, 데이터베이스 **스냅샷** 을 객체로 저장할 수도 있다.  
--   Amazon S3는 http또는 https를 통해 인터넷에서 데이터에 대한 지연 시간이 짧은 액세스를 제공하므로 언제 어디서나 데이터를 검색할 수 있다.  
--   VPC 종단점을 통해 S3에 private access할 수 있다.  
+**기타 기능**  
+- 경로 및 호스트 기반 라우팅 : 경로 기반으로 요청을 각기 다른 대상 그룹으로 전달하는 규칙을 제공. 호스트 기반은 호스트 이름에 따라 요청을 각 다른 대상 그룹으로 전달하는 규칙을 정의하는데 사용할 수 있다.  
+- 네이티브 IPV6 지원  
+- 삭제 보호 및 요청 추적 : 요청 추적은 클라이언트에서 대상으로 http요청을 추적하는데 사용할 수 있다.  
+- 동적 포트 : AmazonECS는 Application Load Balancer와 통합되어 일정이 예약된 컨테이너에서 사용하는 동적 포트를 노출한다.  
+- AWS WAF
 
-### AWS Global Infrastructure
+**주요용어**  
+- 리스너 : 리스너는 구성한 프로토콜 및 포트를 사용하여 연결 요청을 확인하는 프로세스이다. 리스너에 대해 정의한 규칙에 따라 로드 밸런서가 하나 이상의 대상 그룹에 있는 목적지로 라우팅 하는 방법이 결정된다.  
+- 대상 : 설정된 리스너 규칙에 때른 트래픽 목적지이다.  
+- 대상 그룹 : 각 대상 그룹은 지정된 프로토콜과 포트 번호를 사용하여 하나 이상의 등록된 대상으로 요청을 라우팅한다. 상태 확인은 대상 그룹별로 구성될 수 있다.
 
--   AWS의 글로벌 인프라를 Resion, AZ, Edge location으로 나뉜다.  
+### Auto Scaling
 
-#### 리전
+<p align="center"><img src="./img/AutoScaling-4.png" width="500" height="300"></p>   
 
--   2개 이상의 가용 영역을 호스팅 하는 지리적 영역이다.  
--   AWS 서비스에 대한 구성 수준.  
--   AWS를 사용해 리소스를 배포할 때 리소스가 위치하는 리전을 선택한다.  
--   비용을 최소화하고 규제 요구 사항을 준수하면서 지연 시간을 최적화하는데 도움이 된느 리전을 고려하는 것이 중요하다.  
+-	Auto Scling을 사용하면 애플리케이션 로드를 처리할 수 있는 적절한 수의 EC2 인스턴스를 유지하여 리소스를 최소화할 수 있다.  
+-	워크로드 요구 사항을 충족하기 위해 필요한 시점에 EC2 인스턴스 수를 추측할 필요가 없다.  
+-	Auto Scling을 사용하면 지정한 조건에 따라 EC2 인스턴스를 추가하거나 제거할 수 있다.  
+-	Auto Scling은 성능 요구 사항이 변화하는 환경에서 강력하다. 이를 통해 성능을 유지하고 비용을 최소화하여 운영할 수 있다.  
 
-#### 가용 영역
+**질의**
 
--   특정 리전 내에 존재하는 데이터 센터 모음  
--   각 가용 영역은 물리적으로 고립되어 있지만 빠르고 지연 시간이 짧은 네트워크로 서로 연결되어 있다.  
--   가용 영역을 격리함으로써 다른 영역의 장애로부터 보호되고 고가용성을 보장한다.  
+<p align="center"><img src="./img/AutoScaling-2.png" width="700" height="280"></p>  
 
-#### 엣지 로케이션
+Q. 내 워크로드에 변화하는 성능 요구사항을 충족하기 위해 충분한 EC2 리소스가 있는지 어떻게 확인 할 수 있는가?  
+A. 확장성  
+Q. 온디맨드로 EC2 리소스 프로비저닝을 자동화할 수 있는가?  
+A. 자동화
 
--   **Amazon CloudFront** 라고 하는 **CDN(콘텐츠 전송 네트워크)** 을 호스트한다. Cloud Front는 고객에게 콘텐츠를 전송하는데 사용한다.  
--   콘텐츠에 대한 요청이 가장 가까운 엣지 로케이션으로 작동 라우팅 되므로 콘텐츠가 더욱 빨리 전송되는 기술이다  
+**WatchCloud**
 
-### Amazon VPC(Virtual Private Cloud)
+<p align="center"><img src="./img/AutoScaling-1.png" width="700" height="350"></p>   
 
--   Amazone VPC는 AWS 네트워킹 서비스이다.  
--   온프레미스 네트워크와 동일한 개념과 구조를 많이 사용하는 AWS 클라우드 내 프라이빗 네트워크를 생성할 수 있지만, 네트워크 설정의 복잡성 대부분이 제어, 보안 및 유용성을 희생하지 않고 추상화되었다.  
--   고객은 IP주소 공간, 서브넷 및 라우팅 테이블 같은 일반 네트워킹 구성 항목을 정의할 수 있다.  
--   VPC는 AWS 기초 서비스이며 다양한 AWS 서비스와 통합된다. (예를 들어, AC2 인스턴스는 VPC에 배포된다. Amazon RDS 데이터베이스 인스턴스는 VPC에 배포되며, 여기서 데이터베이스는 온프레미스 네트워크와 같이 네트워크 구조로 보호된다.)  
--   VPC를 이해 및 구현하면 다른 AWS 서비스를 완벽하게 사용할 수 있다.  
--   구축 : 리전 및 가용 영역의 고가용성 기반으로 구축(VPC는 한 리전 내에 상주하며 계정당 여러 VPC를 만들 수 있다.)
--   서브넷 : VPC를 나누는데 사용하며 다중 AZ에 걸쳐 구성되도록 허용한다.  
--   라우팅 테이블 : 서브넷에서 나가는 트래픽을 제어한다.  
--   인터넷 게이트웨이(IGW) : VPC에서 인터넷에 엑세스 할 수 있도록 허용.  
--   NAT 게이트웨이 : 프라이빗 서브넷 리소스가 인터넷에 엑세스하도록 허용.  
--   네트워크 엑세스 제어 목록(NACL) : 서브넷에 대한 엑세스 제어, 상태 비저장.  
--   [aws.amazon.com/VPC](aws.amazon.com/VPC)  
+EC2 인스턴스에서 애플리케이션을 실행할 때 Amazon CloudWatch를 이용하여 워크로드 성능을 모니터링하는것이 중요하다. CloudWatch 자체에서 인스턴스를 추가하거나 제거하지 않기 때문에 **AutoScaling**이 필요함
 
-### 보안 그룹
+**자동으로 확장하기 위한 AutoScaling의 필수 3가지 구성요소**  
+<p align="center"><img src="./img/AutoScaling-3.png" width="600" height="300"></p>
 
--   최우선 순위이다.  
--   기본 제공되는 방화벽의 역할을 수행한다.  
--   인스턴스에 대한 엑세스 가능성을 제어
--   Source의 모든 IP 주소를 나타낼때 0.0.0.0/0으로 표시  
+-	시작 구성 생성(What?)
 
--->
+	-	사용할 AMI(Amazon Machine Image)  
+	-	인스턴스에 적용할 인스턴스 유형  
+	-	보안 그룹  
+	-	역할  
+
+-	AutoScling 그룹 생성(Where?)
+
+	-	로드 밸런서와 상호 작용할 인스턴스를 배포할 VPC와 서브넷 정의  
+	-	그룹에 대한 경계를 지정(최소-최대 인스턴스 및 용량)  
+
+-	하나 이상의 Auto Scling 정책 정의(When?)
+
+	-	예약  
+	-	확장 또는 축소 시간을 정의  
+	-	온디맨드  
+	-	조건 기반 정책은 Auto Scling을 동적으로 만들어 변화하는 요구사항을 충족할 수 있다.  
+
+###Amazon Route 53  
+준비중...  
+###Amazon Relational Database Services(RDS)  
+준비중...  
+###AWS Lamda  
+준비중...  
+###AWS Elastic Beantalk  
+준비중...  
+###Amazon Simple Notification Service(SNS)  
+준비중...  
+###Amazon CloutWatch  
+준비중...  
+###Amazon CloudFront  
+준비중...  
+###AWS CloutFormation  
+준비중...
 
 <div align="center">
 
