@@ -86,21 +86,36 @@ EC2 인스턴스에서 애플리케이션을 실행할 때 Amazon CloudWatch를 
 	-	온디맨드  
 	-	조건 기반 정책은 Auto Scling을 동적으로 만들어 변화하는 요구사항을 충족할 수 있다.  
 
-###Amazon Route 53  
-준비중...  
-###Amazon Relational Database Services(RDS)  
-준비중...  
-###AWS Lamda  
-준비중...  
-###AWS Elastic Beantalk  
-준비중...  
-###Amazon Simple Notification Service(SNS)  
-준비중...  
-###Amazon CloutWatch  
-준비중...  
-###Amazon CloudFront  
-준비중...  
-###AWS CloutFormation  
+### Amazon Route 53
+
+준비중...
+
+### Amazon Relational Database Services(RDS)
+
+준비중...
+
+### AWS Lamda
+
+준비중...
+
+### AWS Elastic Beantalk
+
+준비중...
+
+### Amazon Simple Notification Service(SNS)
+
+준비중...
+
+### Amazon CloutWatch
+
+준비중...
+
+### Amazon CloudFront
+
+준비중...
+
+### AWS CloutFormation
+
 준비중...
 
 <div align="center">
