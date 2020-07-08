@@ -88,11 +88,72 @@ EC2 인스턴스에서 애플리케이션을 실행할 때 Amazon CloudWatch를 
 
 ### Amazon Route 53
 
-준비중...
+<p align="center"><img src="./img/Route53-1.png" width="600" height="280"></p>  
+
+-	인터넷 애플리케이션으로 라우팅 할 수 있는 안정적이고 확장 가능한 방법을 제공하기 위해 설계된 웹서비스인 DNS(Domain Name System)  
+-	DNS 이름을 쉽게 등록할 수 있으며 관리형 서비스를 제공하고 사용자를 콘텐츠로 쉽게 유도할 수 있는 글로벌 고가용성 DNS 서비스이다.  
+-	www.example.com과 같은 이름을 컴퓨터가 서로 연결하는데 IP주소로 변환하여 클라이언트에 제공한다(사용자와 엔드포인트를 함께 연결 가능)  
+-	엔드 포인트는 **Amazon EC2 인스턴스, Elastic Load Balancer, Amazon CloudFront 배포, 모든 인터넷 엔드포인트, 온프레미스 데이터 센터에 있는 리소스까지 포함** 할 수있다.  
+-	트래픽 경로를 지정하는 여러 방법을 제공하므로 애플리케이션 및 사용자의 지연 시간을 최적화할 수 있다.  
+-	AWS 서비스이기 때문에 많은 AWS 클라우드 서비스와 통합하여 사용이 가능  
+
+**작동원리**  
+<p align="center"><img src="./img/Route53-2.png" width="650" height="280"></p>
+
+1.	사용자가 웹브라우저를 열고 도메인 입력 ex)www.example.com  
+2.	쿼리는 인터넷 서비스 공급자의 DNS 서버로 라우팅 됨  
+3.	DNS가 Amazon Route 53에서 처리되면서 인터넷 서비스 공급자의 DNS 해석기가 Amazon Route 53에서 호스팅 및 관리하는 도메인 이름 서버로 요청을 전달한다.  
+4.	Route 53 서버는 www.example.com과 같은 값을 수집해 ip주소를 인터넷 서비스 제공업체에 반환한다  
+5.	사용자는 지정된 콘텐츠를 부여받는다  
+
+**Route53 기능**  
+<p align="center"><img src="./img/Route53-3.png" width="700" height="280"></p>
 
 ### Amazon Relational Database Services(RDS)
 
-준비중...
+**관계형 데이터베이스의 문제점**  
+- 서버 유지 관리 및 에너지 소비(foot print)  
+- 소프트웨어 설치 및 패치  
+- 데이터베이스 백업 및 고가용성  
+- 확장성 제한  
+- 데이터 보안  
+- OS 설치 및 패치
+
+**Amazon RDS**  
+<p align="center"><img src="./img/RDS-1.png" width="600" height="300"></p>
+
+-	Amazon RDS는 클라우드에서 관계형 데이터베이스를 설정하고 운영하는 관리형 서비스이다  
+-	Amazon RDS는 비용 효율적이고 크기 조정 가능한 용량을 제공하고, 시간 소모적인 관리 작업을 자동화할 수 있다.  
+-	Amazon RDS는 애플리케이션에만 집중할 수 있도록 하기 때문에 성능, 고가용성, 보안 및 호환성을 제공할 수 있다. (데이터와 애플리케이션 최적화에 집중할 수 있다.)  
+
+**관리 대상**  
+|사용자의 관리대상|AWS의 관리대상|  
+|:---:|:----|  
+|- 애플리케이션 최적화|- OS 설치 및 패치<br>- 데이터베이스 소프트웨어 설치 및 패치<br>- 데이터베이스 백업<br>- 고가용성<br>- 규모조정<br>- 전력 및 렉과 스택<br>- 서버유지관리
+
+**Amazon RDS DB 인스턴스**  
+<p align="center"><img src="./img/RDS-0.png" width="700" height="300"></p>
+
+**Virtual Private Cloud 내 Amazon RDS**  
+<p align="center"><img src="./img/RDS-2.png" width="600" height="280"></p>
+
+**다중 AZ를 통한 고가용성**  
+<p align="center"><img src="./img/RDS-3.png" width="500" height="300"></p>  
+<p align="center"><img src="./img/RDS-4.png" width="500" height="300"></p>
+
+**Amazon RDS 읽기 전용 복제본**  
+<p align="center"><img src="./img/RDS-5.png" width="500" height="300"></p>
+
+-	비동기식 복제 방법을 사용한다  
+-	마스터 DB인스턴스의 읽기 쿼리를 오프로딩  
+-	Read Only 데이터베이스 워크로드에 이상적이다  
+-	필요한 경우 읽기 전용 복제본을 이용하여 마스터로 승격이 가능하다  
+
+**사용사례**
+
+|웹 및 모바일 Application|전자상거래 Application|모바일 및 온라인게임|  
+|:---|:---|:---|  
+|- 높은처리량<br>- 대규모 스토리지<br>- 고가용성|- 저렴한 데이터베이스<br>- 데이터 보안<br>- 완전관리형 솔루션|- 신속한 용량 확장<br>- AutoScling<br> - DB 모니터링|
 
 ### AWS Lamda
 
